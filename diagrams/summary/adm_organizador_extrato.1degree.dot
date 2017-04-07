@@ -1,0 +1,37 @@
+// dot 2.38.0 on Windows 10 10.0
+// SchemaSpy rev 590
+digraph "adm_organizador_extrato" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "adm_organizador_extrato" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">adm_organizador_extrato</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="dt_hr" COLSPAN="3" ALIGN="LEFT">dt_hr</TD></TR>
+      <TR><TD PORT="operacao" COLSPAN="3" ALIGN="LEFT">operacao</TD></TR>
+      <TR><TD PORT="descricao" COLSPAN="3" ALIGN="LEFT">descricao</TD></TR>
+      <TR><TD PORT="valor" COLSPAN="3" ALIGN="LEFT">valor</TD></TR>
+      <TR><TD PORT="saldo" COLSPAN="3" ALIGN="LEFT">saldo</TD></TR>
+      <TR><TD PORT="operador" COLSPAN="3" ALIGN="LEFT">operador</TD></TR>
+      <TR><TD PORT="organizador" COLSPAN="3" ALIGN="LEFT">organizador</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">78 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/adm_organizador_extrato.html"
+    tooltip="adm_organizador_extrato"
+  ];
+}

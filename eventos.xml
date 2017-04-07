@@ -1,0 +1,1719 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="eventos" type="MySQL - 5.6.27-log">
+   <tables>
+      <table name="adm_grupo" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="grupo" foreignKey="fk_adm_grupo_permissoes_2" implied="false" onDeleteCascade="true" table="adm_grupo_permissoes"/>
+            <child column="grupo" foreignKey="fk_adm_operador_grupos_2" implied="false" onDeleteCascade="true" table="adm_operador_grupos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="descricao" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index2" unique="true">
+            <column ascending="true" name="descricao"/>
+         </index>
+      </table>
+      <table name="adm_grupo_permissoes" numRows="70" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="grupo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_grupo_permissoes_2" implied="false" onDeleteCascade="true" table="adm_grupo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="permissao" nullable="false" remarks="" size="255" type="VARCHAR">
+            <parent column="id" foreignKey="fk_adm_grupo_permissoes_1" implied="false" onDeleteCascade="true" table="adm_permissoes"/>
+         </column>
+         <index name="fk_adm_grupo_permissoes_1_idx" unique="false">
+            <column ascending="true" name="permissao"/>
+         </index>
+         <index name="fk_adm_grupo_permissoes_2_idx" unique="false">
+            <column ascending="true" name="grupo"/>
+         </index>
+      </table>
+      <table name="adm_grupo_veiculo" numRows="4" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="chave" nullable="false" remarks="" size="45" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="max_pax" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="3" name="tarifa" nullable="false" remarks="" size="10" type="DECIMAL"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="grupo_UNIQUE" unique="true">
+            <column ascending="true" name="chave"/>
+         </index>
+      </table>
+      <table name="adm_operador" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="operador" foreignKey="fk_adm_operador_grupos_1" implied="false" onDeleteCascade="true" table="adm_operador_grupos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="login" nullable="false" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="nome" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="ramal" nullable="true" remarks="" size="8" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="senha" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="sobrenome" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="ATIVO" digits="0" id="7" name="status" nullable="false" remarks="" size="7" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="8" name="telefone" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index2" unique="true">
+            <column ascending="true" name="login"/>
+         </index>
+      </table>
+      <table name="adm_operador_grupos" numRows="10" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_operador_grupos_1" implied="false" onDeleteCascade="true" table="adm_operador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="grupo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_operador_grupos_2" implied="false" onDeleteCascade="true" table="adm_grupo"/>
+         </column>
+         <index name="fk_adm_operador_grupos_1_idx" unique="false">
+            <column ascending="true" name="operador"/>
+         </index>
+         <index name="fk_adm_operador_grupos_2_idx" unique="false">
+            <column ascending="true" name="grupo"/>
+         </index>
+      </table>
+      <table name="adm_operadoras" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="operadora" foreignKey="fk_adm_organizador_contato_tel_2" implied="false" onDeleteCascade="false" table="adm_organizador_contato_tel"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="operadora" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index2" unique="true">
+            <column ascending="true" name="operadora"/>
+         </index>
+      </table>
+      <table name="adm_organizador" numRows="7" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="organizador" foreignKey="fk_adm_organizador_conta_1" implied="false" onDeleteCascade="true" table="adm_organizador_conta"/>
+            <child column="organizador" foreignKey="fk_adm_organizador_contato_1" implied="false" onDeleteCascade="true" table="adm_organizador_contato"/>
+            <child column="organizador" foreignKey="fk_adm_organizador_contrato_1" implied="false" onDeleteCascade="true" table="adm_organizador_contrato"/>
+            <child column="organizador" foreignKey="fk_adm_organizador_endereco_1" implied="false" onDeleteCascade="true" table="adm_organizador_endereco"/>
+            <child column="organizador" foreignKey="fk_org_contratante_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+            <child column="organizador" foreignKey="fk_org_eventos_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+            <child column="organizador" foreignKey="fk_org_fornecedor_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+            <child column="organizador" foreignKey="fk_org_grupo_1" implied="false" onDeleteCascade="true" table="org_grupo"/>
+            <child column="organizador" foreignKey="fk_org_grupo_veiculo_1" implied="false" onDeleteCascade="true" table="org_grupo_veiculo"/>
+            <child column="organizador" foreignKey="fk_org_operador_1" implied="false" onDeleteCascade="true" table="org_operador"/>
+            <child column="organizador" foreignKey="fk_org_operadoras_1" implied="false" onDeleteCascade="true" table="org_operadoras"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="ccm" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cnpj" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="insc_estadual" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="razao" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="telefone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="observacoes" nullable="true" remarks="" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="9" name="file_logo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="texto_fat_header_1" nullable="true" remarks="" size="500" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="texto_fat_footer_1" nullable="true" remarks="" size="500" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="12" name="pre_pago" nullable="false" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" defaultValue="PJ" digits="0" id="13" name="tipo" nullable="false" remarks="" size="3" type="ENUM"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="adm_organizador_cartao" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="dt_hr" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="empresa" nullable="false" remarks="" size="7" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="3" name="situacao" nullable="false" remarks="" size="10" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="4" name="descricao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="5" name="valor" nullable="false" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="6" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="adm_organizador_conta" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="conta_organizador" foreignKey="fk_evt_faturas_rec_4" implied="false" onDeleteCascade="false" table="evt_faturas_rec"/>
+            <child column="conta_organizador" foreignKey="fk_evt_pagar_3" implied="false" onDeleteCascade="false" table="evt_pagar"/>
+            <child column="conta_organizador" foreignKey="fk_evt_receber_2" implied="false" onDeleteCascade="false" table="evt_receber"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="agencia" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="banco" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="conta" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="titular" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_conta_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="observacao" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_conta_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="adm_organizador_contato" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="contato" foreignKey="fk_adm_organizador_contato_email_1" implied="false" onDeleteCascade="true" table="adm_organizador_contato_email"/>
+            <child column="contato" foreignKey="fk_adm_organizador_contato_tel_1" implied="false" onDeleteCascade="true" table="adm_organizador_contato_tel"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="aniversario" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="apelido" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="funcao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_contato_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="unidade" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_contato_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="adm_organizador_contato_email" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_contato_email_1" implied="false" onDeleteCascade="true" table="adm_organizador_contato"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_contato_email_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+      </table>
+      <table name="adm_organizador_contato_tel" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="ddd" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="fone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="tipo" nullable="true" remarks="" size="18" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_contato_tel_1" implied="false" onDeleteCascade="true" table="adm_organizador_contato"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="operadora" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_contato_tel_2" implied="false" onDeleteCascade="false" table="adm_operadoras"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_contato_tel_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+         <index name="fk_adm_organizador_contato_tel_2_idx" unique="false">
+            <column ascending="true" name="operadora"/>
+         </index>
+      </table>
+      <table name="adm_organizador_contrato" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="contrato" foreignKey="fk_adm_organizador_modulo_1" implied="false" onDeleteCascade="true" table="adm_organizador_modulo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt_fim" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_inicio" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="3" name="qtd_pax" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="CADASTRADO" digits="0" id="4" name="situacao" nullable="false" remarks="" size="11" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="5" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_contrato_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="6" name="qtd_eventos" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="7" name="qtd_operadores" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_contrato_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="adm_organizador_endereco" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="bairro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="complemento" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="estado" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="logradouro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="numero" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="pais" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="referencia" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_endereco_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="unidade" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="12" name="principal" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_endereco_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="adm_organizador_extrato" numRows="78" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="dt_hr" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="operacao" nullable="false" remarks="" size="7" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="3" name="descricao" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="4" name="valor" nullable="false" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="5" name="saldo" nullable="false" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="6" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="7" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="adm_organizador_modulo" numRows="2" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="dt_fim" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_inicio" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="qtd_registros" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="4" name="tipo_modulo" nullable="false" remarks="" size="10" type="ENUM"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="5" name="valor" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="6" name="contrato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_adm_organizador_modulo_1" implied="false" onDeleteCascade="true" table="adm_organizador_contrato"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_organizador_modulo_1_idx" unique="false">
+            <column ascending="true" name="contrato"/>
+         </index>
+      </table>
+      <table name="adm_permissoes" numRows="34" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="255" type="VARCHAR">
+            <child column="permissao" foreignKey="fk_adm_grupo_permissoes_1" implied="false" onDeleteCascade="true" table="adm_grupo_permissoes"/>
+            <child column="parent" foreignKey="fk_adm_permissoes_1" implied="false" onDeleteCascade="true" table="adm_permissoes"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="parent" nullable="true" remarks="" size="255" type="VARCHAR">
+            <parent column="id" foreignKey="fk_adm_permissoes_1" implied="false" onDeleteCascade="true" table="adm_permissoes"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="chave" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_adm_permissoes_1_idx" unique="false">
+            <column ascending="true" name="parent"/>
+         </index>
+      </table>
+      <table name="cep" numRows="776178" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="bairro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="estado" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="logradouro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="config" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="chave" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="1" name="valor" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="chave" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="chave"/>
+         </index>
+         <index name="key_UNIQUE" unique="true">
+            <column ascending="true" name="chave"/>
+         </index>
+      </table>
+      <table name="evt_faturas_pag" numRows="80" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="fatura_pag" foreignKey="fk_evt_ordem_servico_7" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+            <child column="fatura" foreignKey="fk_evt_pagar_1" implied="false" onDeleteCascade="true" table="evt_pagar"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="hr" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="3" name="situacao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_pag_2" implied="false" onDeleteCascade="false" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="fornecedor_contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_pag_3" implied="false" onDeleteCascade="false" table="org_fornecedor_contato"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_pag_1" implied="false" onDeleteCascade="false" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="obs" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="conta_organizador" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_faturas_pag_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+         <index name="fk_evt_faturas_pag_2_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+         <index name="fk_evt_faturas_pag_3_idx" unique="false">
+            <column ascending="true" name="fornecedor_contato"/>
+         </index>
+      </table>
+      <table name="evt_faturas_rec" numRows="48" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="fatura_rec" foreignKey="fk_evt_ordem_servico_8" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+            <child column="fatura" foreignKey="fk_evt_receber_1" implied="false" onDeleteCascade="true" table="evt_receber"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="hr" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="3" name="situacao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_rec_1" implied="false" onDeleteCascade="false" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_rec_2" implied="false" onDeleteCascade="false" table="org_contratante_contato"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="endereco" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_rec_3" implied="false" onDeleteCascade="false" table="org_contratante_endereco"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="7" name="obs" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="descontos_especiais" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="9" name="vlr_descontos_especiais" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="10" name="valor_extenso" nullable="true" remarks="" size="1000" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="conta_organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_faturas_rec_4" implied="false" onDeleteCascade="false" table="adm_organizador_conta"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_faturas_rec_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+         <index name="fk_evt_faturas_rec_2_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+         <index name="fk_evt_faturas_rec_3_idx" unique="false">
+            <column ascending="true" name="endereco"/>
+         </index>
+         <index name="fk_evt_faturas_rec_4_idx" unique="false">
+            <column ascending="true" name="conta_organizador"/>
+         </index>
+      </table>
+      <table name="evt_ordem" numRows="92" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="ordem" foreignKey="fk_evt_ordem_servico_1" implied="false" onDeleteCascade="true" table="evt_ordem_servico"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="hr" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="3" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_3" implied="false" onDeleteCascade="false" table="org_operador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_2" implied="false" onDeleteCascade="false" table="org_contratante_contato"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_ordem_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+         <index name="fk_evt_ordem_2_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+         <index name="fk_evt_ordem_3_idx" unique="false">
+            <column ascending="true" name="operador"/>
+         </index>
+      </table>
+      <table name="evt_ordem_pax" numRows="529" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="ordem_servico" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_pax_1" implied="false" onDeleteCascade="true" table="evt_ordem_servico"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="pax" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_pax_2" implied="false" onDeleteCascade="false" table="evt_pax"/>
+         </column>
+         <index name="fk_evt_ordem_pax_2_idx" unique="false">
+            <column ascending="true" name="pax"/>
+         </index>
+         <index name="index1" unique="true">
+            <column ascending="true" name="ordem_servico"/>
+            <column ascending="true" name="pax"/>
+         </index>
+      </table>
+      <table name="evt_ordem_servico" numRows="251" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="ordem_servico" foreignKey="fk_evt_ordem_pax_1" implied="false" onDeleteCascade="true" table="evt_ordem_pax"/>
+            <child column="ordem_servico" foreignKey="fk_evt_ordem_servico_extra_1" implied="false" onDeleteCascade="true" table="evt_ordem_servico_extra"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt_inicio" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_termino" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="hr_inicio" nullable="false" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="4" name="hr_termino" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="5" name="idioma" nullable="true" remarks="" size="1" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="km_rodado" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="7" name="km_tolerancia" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="8" name="obs" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="situacao" nullable="false" remarks="" size="10" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="10" name="tempo_espera" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="11" name="tempo_tolerancia" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="2" id="12" name="vlr_custo_hr_extra" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="13" name="vlr_custo_km_extra" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="14" name="vlr_custo_saida" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="15" name="vlr_custo_servico" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="16" name="vlr_hr_extra" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="17" name="vlr_km_extra" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="18" name="vlr_saida" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="19" name="vlr_servico" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="20" name="vlr_desconto" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="21" name="adicional" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_6" implied="false" onDeleteCascade="false" table="org_adicionais"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="22" name="fatura_pag" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_7" implied="false" onDeleteCascade="false" table="evt_faturas_pag"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="23" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_3" implied="false" onDeleteCascade="false" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="24" name="ordem" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_1" implied="false" onDeleteCascade="true" table="evt_ordem"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="25" name="prestador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_4" implied="false" onDeleteCascade="false" table="org_fornecedor_prestador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="26" name="servico" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_2" implied="false" onDeleteCascade="false" table="org_servicos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="27" name="veiculo" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_5" implied="false" onDeleteCascade="false" table="org_fornecedor_veiculo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="28" name="fatura_rec" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_8" implied="false" onDeleteCascade="false" table="evt_faturas_rec"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="29" name="tempo_franquia_fornecedor" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="30" name="extrato" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="31" name="origem" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="32" name="destino" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_ordem_servico_1_idx" unique="false">
+            <column ascending="true" name="ordem"/>
+         </index>
+         <index name="fk_evt_ordem_servico_2_idx" unique="false">
+            <column ascending="true" name="servico"/>
+         </index>
+         <index name="fk_evt_ordem_servico_3_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+         <index name="fk_evt_ordem_servico_4_idx" unique="false">
+            <column ascending="true" name="prestador"/>
+         </index>
+         <index name="fk_evt_ordem_servico_5_idx" unique="false">
+            <column ascending="true" name="veiculo"/>
+         </index>
+         <index name="fk_evt_ordem_servico_6_idx" unique="false">
+            <column ascending="true" name="adicional"/>
+         </index>
+         <index name="fk_evt_ordem_servico_7_idx" unique="false">
+            <column ascending="true" name="fatura_pag"/>
+         </index>
+         <index name="fk_evt_ordem_servico_8_idx" unique="false">
+            <column ascending="true" name="fatura_rec"/>
+         </index>
+      </table>
+      <table name="evt_ordem_servico_extra" numRows="162" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="2" id="1" name="aliq" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="2" name="descricao" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="2" id="3" name="valor" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="4" name="extra" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_extra_2" implied="false" onDeleteCascade="false" table="org_extras"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="ordem_servico" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_ordem_servico_extra_1" implied="false" onDeleteCascade="true" table="evt_ordem_servico"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_ordem_servico_extra_1_idx" unique="false">
+            <column ascending="true" name="ordem_servico"/>
+         </index>
+         <index name="fk_evt_ordem_servico_extra_2_idx" unique="false">
+            <column ascending="true" name="extra"/>
+         </index>
+      </table>
+      <table name="evt_pagar" numRows="83" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="dt_pagto" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_vencto" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="nf" nullable="true" remarks="" size="12" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="ABERTO" digits="0" id="4" name="situacao" nullable="false" remarks="" size="7" type="ENUM"/>
+         <column autoUpdated="false" digits="2" id="5" name="vlr_cm" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="6" name="vlr_desconto" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="vlr_juros" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="vlr_multa" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="9" name="vlr_principal" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="10" name="fatura" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pagar_1" implied="false" onDeleteCascade="true" table="evt_faturas_pag"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="conta_fornecedor" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pagar_2" implied="false" onDeleteCascade="false" table="org_fornecedor_conta"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="conta_organizador" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pagar_3" implied="false" onDeleteCascade="false" table="adm_organizador_conta"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="13" name="forma_pagamento" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_pagar_1_idx" unique="false">
+            <column ascending="true" name="fatura"/>
+         </index>
+         <index name="fk_evt_pagar_2_idx" unique="false">
+            <column ascending="true" name="conta_fornecedor"/>
+         </index>
+         <index name="fk_evt_pagar_3_idx" unique="false">
+            <column ascending="true" name="conta_organizador"/>
+         </index>
+      </table>
+      <table name="evt_pax" numRows="5534" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="pax" foreignKey="fk_evt_ordem_pax_2" implied="false" onDeleteCascade="false" table="evt_ordem_pax"/>
+            <child column="pax" foreignKey="fk_evt_pax_contato_1" implied="false" onDeleteCascade="true" table="evt_pax_contato"/>
+            <child column="pax" foreignKey="fk_evt_pax_endereco_1" implied="false" onDeleteCascade="true" table="evt_pax_endereco"/>
+            <child column="pax" foreignKey="fk_evt_pax_visto_1" implied="false" onDeleteCascade="true" table="evt_pax_visto"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="doc_identificacao" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_nascimento" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="email" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="passaporte" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="sobrenome" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pax_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="8" name="vip" nullable="true" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" digits="0" id="9" name="tratamento" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="sufixo" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="apelido" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="12" name="empresa" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="13" name="cargo" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="14" name="sexo" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="15" name="estado_civil" nullable="true" remarks="" size="40" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="16" name="nacionalidade" nullable="true" remarks="" size="40" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="17" name="manequim" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="18" name="fumante" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="19" name="sabe_nadar" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="20" name="rg" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="21" name="cpf" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="22" name="validade_passaporte" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="23" name="doenca_pre" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="24" name="descricao_doenca" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="25" name="tipo_sangue" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="26" name="observacoes" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="27" name="telefone" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="28" name="celular" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="29" name="email_comercial" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="30" name="celular_comercial" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="31" name="telefone_comercial" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="Pessoal" digits="0" id="32" name="receber_email" nullable="false" remarks="" size="9" type="ENUM"/>
+         <column autoUpdated="false" digits="0" id="33" name="login" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="34" name="senha" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="35" name="dt_cad" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_pax_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+         <index name="index3" unique="true">
+            <column ascending="true" name="evento"/>
+            <column ascending="true" name="login"/>
+         </index>
+      </table>
+      <table name="evt_pax_contato" numRows="43" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="nome" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="telefone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="pax" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pax_contato_1" implied="false" onDeleteCascade="true" table="evt_pax"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_pax_contato_1_idx" unique="false">
+            <column ascending="true" name="pax"/>
+         </index>
+      </table>
+      <table name="evt_pax_endereco" numRows="44" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="bairro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="complemento" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="estado" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="logradouro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="numero" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="pais" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="referencia" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="pax" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pax_endereco_1" implied="false" onDeleteCascade="true" table="evt_pax"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_pax_endereco_1_idx" unique="false">
+            <column ascending="true" name="pax"/>
+         </index>
+      </table>
+      <table name="evt_pax_visto" numRows="25" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="validade_visto" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="visto" nullable="true" remarks="" size="300" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="pax" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_pax_visto_1" implied="false" onDeleteCascade="true" table="evt_pax"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_pax_visto_1_idx" unique="false">
+            <column ascending="true" name="pax"/>
+         </index>
+      </table>
+      <table name="evt_receber" numRows="51" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="dt_receb" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_vencto" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="nf" nullable="true" remarks="" size="12" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="ABERTO" digits="0" id="4" name="situacao" nullable="true" remarks="" size="8" type="ENUM"/>
+         <column autoUpdated="false" digits="2" id="5" name="vlr_cm" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="6" name="vlr_desconto" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="vlr_juros" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="vlr_multa" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="9" name="vlr_principal" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="10" name="fatura" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_receber_1" implied="false" onDeleteCascade="true" table="evt_faturas_rec"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="conta_organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_receber_2" implied="false" onDeleteCascade="false" table="adm_organizador_conta"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="12" name="conta_contratante" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_evt_receber_3" implied="false" onDeleteCascade="false" table="org_contratante_conta"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="13" name="forma_recebimento" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_evt_receber_1_idx" unique="false">
+            <column ascending="true" name="fatura"/>
+         </index>
+         <index name="fk_evt_receber_2_idx" unique="false">
+            <column ascending="true" name="conta_organizador"/>
+         </index>
+         <index name="fk_evt_receber_3_idx" unique="false">
+            <column ascending="true" name="conta_contratante"/>
+         </index>
+      </table>
+      <table name="org_adicionais" numRows="11" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="adicional" foreignKey="fk_evt_ordem_servico_6" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+            <child column="adicional" foreignKey="fk_org_transfers_vig_tarif_adicionais_2" implied="false" onDeleteCascade="false" table="org_transfers_vig_tarif_adicionais"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="local" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="tolerancia" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="3" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_adicionais_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_adicionais_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+      </table>
+      <table name="org_caracteristica_hotel" numRows="104" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="nome" nullable="true" remarks="" size="300" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="status" nullable="true" remarks="" size="12" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="organizador" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_caracteristica_hotel_organizador" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_contratante" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="contratante" foreignKey="fk_org_contratante_conta_1" implied="false" onDeleteCascade="true" table="org_contratante_conta"/>
+            <child column="contratante" foreignKey="fk_org_contratante_contato_1" implied="false" onDeleteCascade="true" table="org_contratante_contato"/>
+            <child column="contratante" foreignKey="fk_org_contratante_endereco_1" implied="false" onDeleteCascade="true" table="org_contratante_endereco"/>
+            <child column="id" foreignKey="fk_org_contratante_pf_1" implied="false" onDeleteCascade="true" table="org_contratante_pf"/>
+            <child column="id" foreignKey="fk_org_contratante_pj_1" implied="false" onDeleteCascade="true" table="org_contratante_pj"/>
+            <child column="contratante" foreignKey="fk_org_eventos_contratantes_1" implied="false" onDeleteCascade="false" table="org_eventos_contratantes"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="nome" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="observacoes" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="telefone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="tipo" nullable="true" remarks="" size="2" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="dias_fat" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="8" name="site" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_contratante_conta" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="conta_contratante" foreignKey="fk_evt_receber_3" implied="false" onDeleteCascade="false" table="evt_receber"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="agencia" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="banco" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="conta" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="titular" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="contratante" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_conta_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_conta_1_idx" unique="false">
+            <column ascending="true" name="contratante"/>
+         </index>
+      </table>
+      <table name="org_contratante_contato" numRows="41" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="contato" foreignKey="fk_evt_faturas_rec_2" implied="false" onDeleteCascade="false" table="evt_faturas_rec"/>
+            <child column="contato" foreignKey="fk_evt_ordem_2" implied="false" onDeleteCascade="false" table="evt_ordem"/>
+            <child column="contato" foreignKey="fk_org_contratante_contato_email_1" implied="false" onDeleteCascade="true" table="org_contratante_contato_email"/>
+            <child column="contato" foreignKey="fk_org_contratante_contato_tel_1" implied="false" onDeleteCascade="true" table="org_contratante_contato_tel"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="aniversario" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="apelido" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="funcao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="contratante" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_contato_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="6" name="unidade" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_contato_1_idx" unique="false">
+            <column ascending="true" name="contratante"/>
+         </index>
+      </table>
+      <table name="org_contratante_contato_email" numRows="31" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_contato_email_1" implied="false" onDeleteCascade="true" table="org_contratante_contato"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_contato_email_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+      </table>
+      <table name="org_contratante_contato_tel" numRows="49" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="ddd" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="fone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="tipo" nullable="true" remarks="" size="18" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_contato_tel_1" implied="false" onDeleteCascade="true" table="org_contratante_contato"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="operadora" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_contato_tel_2" implied="false" onDeleteCascade="false" table="org_operadoras"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_contato_tel_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+         <index name="fk_org_contratante_contato_tel_2_idx" unique="false">
+            <column ascending="true" name="operadora"/>
+         </index>
+      </table>
+      <table name="org_contratante_endereco" numRows="21" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="endereco" foreignKey="fk_evt_faturas_rec_3" implied="false" onDeleteCascade="false" table="evt_faturas_rec"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="bairro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="complemento" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="estado" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="logradouro" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="numero" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="pais" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="referencia" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="contratante" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_endereco_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="11" name="unidade" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_endereco_1_idx" unique="false">
+            <column ascending="true" name="contratante"/>
+         </index>
+      </table>
+      <table name="org_contratante_pf" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_pf_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="aniversario" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="cpf" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="sobrenome" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_pf_1_idx" unique="false">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_contratante_pj" numRows="18" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_contratante_pj_1" implied="false" onDeleteCascade="true" table="org_contratante"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="ccm" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cnpj" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="insc_estadual" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="razao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_contratante_pj_1_idx" unique="false">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_disposicao" numRows="25" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="disposicao" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="franquia_horas" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="3" name="franquia_km" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_disposicao_vig" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="disposicao" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_inicio_vigencia" nullable="false" remarks="" size="10" type="DATE"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_disposicao_vig_tarif" numRows="44" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="vigencia" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="grupo_veiculo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_disposicao_vig_tarif_2" implied="false" onDeleteCascade="false" table="org_grupo_veiculo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="franquia_horas" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="2" id="4" name="vlr_custo_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="5" name="vlr_custo_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="6" name="vlr_custo_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="vlr_custo_km_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="vlr_custo_km_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="9" name="vlr_custo_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="10" name="vlr_venda_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="11" name="vlr_venda_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="12" name="vlr_venda_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="13" name="vlr_venda_km_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="14" name="vlr_venda_km_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="15" name="vlr_venda_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_disposicao_vig_tarif_2_idx" unique="false">
+            <column ascending="true" name="grupo_veiculo"/>
+         </index>
+      </table>
+      <table name="org_email" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="anexo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cc" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cco" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="corpo" nullable="true" remarks="" size="65535" type="TEXT"/>
+         <column autoUpdated="false" digits="0" id="5" name="email_contato" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="idioma_cabecalho" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="modelo" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="titulo" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="10" name="evento" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_eventos" numRows="24" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="evento" foreignKey="fk_evt_faturas_pag_1" implied="false" onDeleteCascade="false" table="evt_faturas_pag"/>
+            <child column="evento" foreignKey="fk_evt_faturas_rec_1" implied="false" onDeleteCascade="false" table="evt_faturas_rec"/>
+            <child column="evento" foreignKey="fk_evt_ordem_1" implied="false" onDeleteCascade="true" table="evt_ordem"/>
+            <child column="evento" foreignKey="fk_evt_pax_1" implied="false" onDeleteCascade="true" table="evt_pax"/>
+            <child column="evento" foreignKey="fk_org_adicionais_1" implied="false" onDeleteCascade="true" table="org_adicionais"/>
+            <child column="evento" foreignKey="fk_org_eventos_contratantes_2" implied="false" onDeleteCascade="true" table="org_eventos_contratantes"/>
+            <child column="evento" foreignKey="fk_org_eventos_operadores_1" implied="false" onDeleteCascade="true" table="org_eventos_operadores"/>
+            <child column="evento" foreignKey="fk_org_extras_1" implied="false" onDeleteCascade="true" table="org_extras"/>
+            <child column="evento" foreignKey="fk_org_servicos_1" implied="false" onDeleteCascade="true" table="org_servicos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="cidade" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_fechamento" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="3" name="dt_fim" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="4" name="dt_inicio" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="5" name="localizacao" nullable="false" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="nome" nullable="false" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="pais" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="responsavel_email" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="responsavel_nome" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="responsavel_telefone" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="telefone" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="12" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_eventos_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" defaultValue="10" digits="0" id="13" name="min_tolerancia" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="14" name="flag_tolerancia" nullable="false" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="15" name="flag_tolerancia_sempre" nullable="false" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" defaultValue="10" digits="0" id="16" name="min_fracao" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="17" name="flag_fracao" nullable="false" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" defaultValue="SIMPLIFICADO" digits="0" id="18" name="tipo" nullable="true" remarks="" size="15" type="ENUM"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_eventos_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_eventos_contratantes" numRows="25" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_eventos_contratantes_2" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="contratante" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_eventos_contratantes_1" implied="false" onDeleteCascade="false" table="org_contratante"/>
+         </column>
+         <index name="fk_org_eventos_contratantes_1_idx" unique="false">
+            <column ascending="true" name="contratante"/>
+         </index>
+         <index name="index1" unique="true">
+            <column ascending="true" name="evento"/>
+            <column ascending="true" name="contratante"/>
+         </index>
+      </table>
+      <table name="org_eventos_operadores" numRows="175" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_eventos_operadores_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_eventos_operadores_2" implied="false" onDeleteCascade="false" table="org_operador"/>
+         </column>
+         <index name="fk_org_eventos_operadores_2_idx" unique="false">
+            <column ascending="true" name="operador"/>
+         </index>
+         <index name="index1" unique="true">
+            <column ascending="true" name="evento"/>
+            <column ascending="true" name="operador"/>
+         </index>
+      </table>
+      <table name="org_extras" numRows="26" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="extra" foreignKey="fk_evt_ordem_servico_extra_2" implied="false" onDeleteCascade="false" table="evt_ordem_servico_extra"/>
+         </column>
+         <column autoUpdated="false" defaultValue="0.00" digits="2" id="1" name="aliq" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="2" name="extra" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_extras_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_extras_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+      </table>
+      <table name="org_forma_pagamento" numRows="6" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="nome" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="organizador" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_forma_pagamento_organizador" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_forma_recebimento" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="nome" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="organizador" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_forma_recebimento_organizador" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_fornecedor" numRows="79" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="fornecedor" foreignKey="fk_evt_faturas_pag_2" implied="false" onDeleteCascade="false" table="evt_faturas_pag"/>
+            <child column="fornecedor" foreignKey="fk_evt_ordem_servico_3" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+            <child column="fornecedor" foreignKey="fk_org_fornecedor_conta_1" implied="false" onDeleteCascade="true" table="org_fornecedor_conta"/>
+            <child column="fornecedor" foreignKey="fk_org_fornecedor_contato_1" implied="false" onDeleteCascade="true" table="org_fornecedor_contato"/>
+            <child column="id" foreignKey="fk_org_fornecedor_pf_1" implied="false" onDeleteCascade="true" table="org_fornecedor_pf"/>
+            <child column="id" foreignKey="fk_org_fornecedor_pj_1" implied="false" onDeleteCascade="true" table="org_fornecedor_pj"/>
+            <child column="fornecedor" foreignKey="fk_org_fornecedor_prestador_1" implied="false" onDeleteCascade="true" table="org_fornecedor_prestador"/>
+            <child column="fornecedor" foreignKey="fk_org_fornecedor_veiculo_1" implied="false" onDeleteCascade="true" table="org_fornecedor_veiculo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="tipo" nullable="true" remarks="" size="2" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="dias_fat" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="5" name="endereco" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="estado" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="pais" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="nome" nullable="true" remarks="" size="80" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="telefone" nullable="true" remarks="" size="32" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="11" name="email" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_conta" numRows="53" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="conta_fornecedor" foreignKey="fk_evt_pagar_2" implied="false" onDeleteCascade="false" table="evt_pagar"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="agencia" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="banco" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="conta" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="titular" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_conta_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_conta_1_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_contato" numRows="67" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="fornecedor_contato" foreignKey="fk_evt_faturas_pag_3" implied="false" onDeleteCascade="false" table="evt_faturas_pag"/>
+            <child column="contato" foreignKey="fk_org_fornecedor_contato_email_1" implied="false" onDeleteCascade="true" table="org_fornecedor_contato_email"/>
+            <child column="contato" foreignKey="fk_org_fornecedor_contato_telefone_1" implied="false" onDeleteCascade="true" table="org_fornecedor_contato_telefone"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="aniversario" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="apelido" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="funcao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_contato_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_contato_1_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_contato_email" numRows="56" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_contato_email_1" implied="false" onDeleteCascade="true" table="org_fornecedor_contato"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_contato_email_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_contato_telefone" numRows="109" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="ddd" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="fone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="tipo" nullable="true" remarks="" size="18" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="contato" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_contato_telefone_1" implied="false" onDeleteCascade="true" table="org_fornecedor_contato"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="operadora" nullable="true" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_contato_telefone_2" implied="false" onDeleteCascade="false" table="org_operadoras"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_contato_telefone_1_idx" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+         <index name="fk_org_fornecedor_contato_telefone_2_idx" unique="false">
+            <column ascending="true" name="operadora"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_pf" numRows="67" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_pf_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="aniversario" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="apelido" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cpf" nullable="true" remarks="" size="19" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="nome" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_pj" numRows="12" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_pj_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="cnpj" nullable="true" remarks="" size="19" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="razao_social" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_prestador" numRows="83" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="prestador" foreignKey="fk_evt_ordem_servico_4" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+            <child column="prestador" foreignKey="fk_org_fornecedor_prestador_login_1" implied="false" onDeleteCascade="true" table="org_fornecedor_prestador_login"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="cat_hab" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cnh_registro" nullable="true" remarks="" size="15" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="dt_prime_cnh" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="4" name="email" nullable="false" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="nome" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="telefone" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="validade" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="8" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_prestador_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="login" nullable="false" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="senha" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_prestador_1_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+         <index name="index3" unique="true">
+            <column ascending="true" name="login"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_prestador_login" numRows="38" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="prestador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_prestador_login_1" implied="false" onDeleteCascade="true" table="org_fornecedor_prestador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="token" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="dt_hr_token" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="4" name="validade" nullable="false" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="5" name="renovacao" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" defaultValue="ATIVO" digits="0" id="6" name="situacao" nullable="true" remarks="" size="9" type="ENUM"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_prestador_login_1_idx" unique="false">
+            <column ascending="true" name="prestador"/>
+         </index>
+         <index name="index3" unique="true">
+            <column ascending="true" name="token"/>
+         </index>
+      </table>
+      <table name="org_fornecedor_veiculo" numRows="80" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="veiculo" foreignKey="fk_evt_ordem_servico_5" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="ano_modelo" nullable="true" remarks="" size="10" type="VARCHAR"/>
+         <column autoUpdated="false" defaultValue="0" digits="0" id="2" name="blindado" nullable="true" remarks="" size="0" type="BIT"/>
+         <column autoUpdated="false" digits="0" id="3" name="cor" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="descricao" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="origem" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="placa" nullable="true" remarks="" size="8" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="veiculo" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="fornecedor" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_veiculo_1" implied="false" onDeleteCascade="true" table="org_fornecedor"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="9" name="grupo_veiculo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_fornecedor_veiculo_2" implied="false" onDeleteCascade="false" table="org_grupo_veiculo"/>
+         </column>
+         <column autoUpdated="false" defaultValue="1" digits="0" id="10" name="qtd_pessoas" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_fornecedor_veiculo_1_idx" unique="false">
+            <column ascending="true" name="fornecedor"/>
+         </index>
+         <index name="fk_org_fornecedor_veiculo_2_idx" unique="false">
+            <column ascending="true" name="grupo_veiculo"/>
+         </index>
+      </table>
+      <table name="org_grupo" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="grupo" foreignKey="fk_org_grupo_permissoes_1" implied="false" onDeleteCascade="true" table="org_grupo_permissoes"/>
+            <child column="grupo" foreignKey="fk_org_operador_grupos_2" implied="false" onDeleteCascade="false" table="org_operador_grupos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="descricao" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_grupo_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="index2" unique="true">
+            <column ascending="true" name="organizador"/>
+            <column ascending="true" name="descricao"/>
+         </index>
+      </table>
+      <table name="org_grupo_permissoes" numRows="1250" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="grupo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_grupo_permissoes_1" implied="false" onDeleteCascade="true" table="org_grupo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="permissao" nullable="false" remarks="" size="255" type="VARCHAR">
+            <parent column="id" foreignKey="fk_org_grupo_permissoes_2" implied="false" onDeleteCascade="true" table="org_permissoes"/>
+         </column>
+         <index name="fk_org_grupo_permissoes_2_idx" unique="false">
+            <column ascending="true" name="permissao"/>
+         </index>
+         <index name="index1" unique="true">
+            <column ascending="true" name="grupo"/>
+            <column ascending="true" name="permissao"/>
+         </index>
+      </table>
+      <table name="org_grupo_veiculo" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="grupo_veiculo" foreignKey="fk_org_disposicao_vig_tarif_2" implied="false" onDeleteCascade="false" table="org_disposicao_vig_tarif"/>
+            <child column="grupo_veiculo" foreignKey="fk_org_fornecedor_veiculo_2" implied="false" onDeleteCascade="false" table="org_fornecedor_veiculo"/>
+            <child column="grupo_veiculo" foreignKey="fk_org_transfers_vig_tarif_2" implied="false" onDeleteCascade="false" table="org_transfers_vig_tarif"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="grupo" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_grupo_veiculo_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="categoria" nullable="true" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="4" name="sigla" nullable="false" remarks="" size="3" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_grupo_veiculo_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+         <index name="index3" unique="true">
+            <column ascending="true" name="organizador"/>
+            <column ascending="true" name="grupo"/>
+         </index>
+         <index name="index4" unique="true">
+            <column ascending="true" name="organizador"/>
+            <column ascending="true" name="sigla"/>
+         </index>
+      </table>
+      <table name="org_hotel" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="bairro" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="cep" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="cidade" nullable="true" remarks="" size="200" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="cnpj" nullable="true" remarks="" size="30" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="complemento" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="descricao" nullable="true" remarks="" size="2000" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="dt_cadastro" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="8" name="email" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="estado" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="10" name="estrelas" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="11" name="logradouro" nullable="true" remarks="" size="300" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="12" name="nome_fantasia" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="13" name="numero" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="14" name="pais" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="15" name="razao_social" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="16" name="referencia" nullable="true" remarks="" size="200" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="17" name="telefone" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="18" name="organizador" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="19" name="site" nullable="true" remarks="" size="120" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_hotel_organizador" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_hotel_acomodacao" numRows="13" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT">
+            <child column="hotel_acomodacao" foreignKey="FK_org_tarifario_hotel_vig_tarif_hotel_acomodacao" implied="false" onDeleteCascade="false" table="org_tarifario_hotel_vig_tarif"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="codigo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="descricao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="qtd_max_pax" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="4" name="qtd_pax" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="5" name="hotel" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_hotel_caracteristicas" numRows="154" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="hotel" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="caracteristicas" nullable="false" remarks="" size="10" type="INT"/>
+         <primaryKey column="caracteristicas" sequenceNumberInPK="1"/>
+         <primaryKey column="hotel" sequenceNumberInPK="2"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="hotel"/>
+            <column ascending="true" name="caracteristicas"/>
+         </index>
+         <index name="FK_org_hotel_caracteristicas_caracteristicas" unique="false">
+            <column ascending="true" name="caracteristicas"/>
+         </index>
+      </table>
+      <table name="org_hotel_contato" numRows="5" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="funcao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="nome" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="hotel" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_hotel_contato_hotel" unique="false">
+            <column ascending="true" name="hotel"/>
+         </index>
+      </table>
+      <table name="org_hotel_contato_email" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="tipo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="contato" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_hotel_contato_email_contato" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+      </table>
+      <table name="org_hotel_contato_tel" numRows="3" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="fone" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="contato" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_hotel_contato_tel_contato" unique="false">
+            <column ascending="true" name="contato"/>
+         </index>
+      </table>
+      <table name="org_hotel_pax" numRows="9" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="codigo" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="descricao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="hotel" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_mao_de_obra" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="franquia_horas" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="mao_de_obra" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_mao_de_obra_vig_tarif" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="mao_de_obra" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_inicio_vigencia" nullable="false" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="2" id="3" name="vlr_custo_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="4" name="vlr_custo_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="5" name="vlr_custo_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="6" name="vlr_custo_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="vlr_venda_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="vlr_venda_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="9" name="vlr_venda_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="10" name="vlr_venda_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_operador" numRows="24" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="operador" foreignKey="fk_evt_ordem_3" implied="false" onDeleteCascade="false" table="evt_ordem"/>
+            <child column="operador" foreignKey="fk_org_eventos_operadores_2" implied="false" onDeleteCascade="false" table="org_eventos_operadores"/>
+            <child column="operador" foreignKey="fk_org_operador_grupos_1" implied="false" onDeleteCascade="true" table="org_operador_grupos"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="email" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="login" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="nome" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="4" name="ramal" nullable="true" remarks="" size="8" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="5" name="senha" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="6" name="sobrenome" nullable="true" remarks="" size="100" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="7" name="status" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="8" name="telefone" nullable="true" remarks="" size="20" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="9" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_operador_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_operador_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+         <index name="index3" unique="true">
+            <column ascending="true" name="organizador"/>
+            <column ascending="true" name="login"/>
+         </index>
+      </table>
+      <table name="org_operador_grupos" numRows="24" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="operador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_operador_grupos_1" implied="false" onDeleteCascade="true" table="org_operador"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="grupo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_operador_grupos_2" implied="false" onDeleteCascade="false" table="org_grupo"/>
+         </column>
+         <index name="fk_org_operador_grupos_2_idx" unique="false">
+            <column ascending="true" name="grupo"/>
+         </index>
+         <index name="index1" unique="true">
+            <column ascending="true" name="operador"/>
+            <column ascending="true" name="grupo"/>
+         </index>
+      </table>
+      <table name="org_operadoras" numRows="16" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="operadora" foreignKey="fk_org_contratante_contato_tel_2" implied="false" onDeleteCascade="false" table="org_contratante_contato_tel"/>
+            <child column="operadora" foreignKey="fk_org_fornecedor_contato_telefone_2" implied="false" onDeleteCascade="false" table="org_fornecedor_contato_telefone"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="operadora" nullable="true" remarks="" size="50" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="organizador" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_operadoras_1" implied="false" onDeleteCascade="true" table="adm_organizador"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_operadoras_1_idx" unique="false">
+            <column ascending="true" name="organizador"/>
+         </index>
+      </table>
+      <table name="org_permissoes" numRows="202" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="255" type="VARCHAR">
+            <child column="permissao" foreignKey="fk_org_grupo_permissoes_2" implied="false" onDeleteCascade="true" table="org_grupo_permissoes"/>
+            <child column="parent" foreignKey="fk_org_permissoes_1" implied="false" onDeleteCascade="true" table="org_permissoes"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="chave" nullable="false" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="parent" nullable="true" remarks="" size="255" type="VARCHAR">
+            <parent column="id" foreignKey="fk_org_permissoes_1" implied="false" onDeleteCascade="true" table="org_permissoes"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_permissoes_parent" unique="false">
+            <column ascending="true" name="parent"/>
+         </index>
+      </table>
+      <table name="org_servicos" numRows="117" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <child column="servico" foreignKey="fk_evt_ordem_servico_2" implied="false" onDeleteCascade="false" table="evt_ordem_servico"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="tipo" nullable="true" remarks="" size="1" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="2" name="evento" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_servicos_1" implied="false" onDeleteCascade="true" table="org_eventos"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_servicos_1_idx" unique="false">
+            <column ascending="true" name="evento"/>
+         </index>
+      </table>
+      <table name="org_solicitacao_resgate" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="1" name="data_hora" nullable="true" remarks="" size="19" type="DATETIME"/>
+         <column autoUpdated="false" digits="0" id="2" name="mensagem" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="0" id="3" name="situacao" nullable="true" remarks="" size="255" type="VARCHAR"/>
+         <column autoUpdated="false" digits="2" id="4" name="valor" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="5" name="conta" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="6" name="operador" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_tarifario_hotel" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT">
+            <child column="tarifario" foreignKey="FK_org_tarifario_hotel_vig_tarifario" implied="false" onDeleteCascade="false" table="org_tarifario_hotel_vig"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt_cadastro" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="evento" nullable="true" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="0" id="3" name="hotel" nullable="true" remarks="" size="10" type="INT"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_tarifario_hotel_vig" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT">
+            <child column="vigencia" foreignKey="FK_org_tarifario_hotel_vig_tarif_vigencia" implied="false" onDeleteCascade="false" table="org_tarifario_hotel_vig_tarif"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="dt_inicio_vigencia" nullable="true" remarks="" size="10" type="DATE"/>
+         <column autoUpdated="false" digits="0" id="2" name="tarifario" nullable="true" remarks="" size="10" type="INT">
+            <parent column="id" foreignKey="FK_org_tarifario_hotel_vig_tarifario" implied="false" onDeleteCascade="false" table="org_tarifario_hotel"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_tarifario_hotel_vig_tarifario" unique="false">
+            <column ascending="true" name="tarifario"/>
+         </index>
+      </table>
+      <table name="org_tarifario_hotel_vig_tarif" numRows="0" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT"/>
+         <column autoUpdated="false" digits="2" id="1" name="vlr_custo" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="2" name="vlr_venda" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="3" name="hotel_acomodacao" nullable="true" remarks="" size="10" type="INT">
+            <parent column="id" foreignKey="FK_org_tarifario_hotel_vig_tarif_hotel_acomodacao" implied="false" onDeleteCascade="false" table="org_hotel_acomodacao"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="vigencia" nullable="true" remarks="" size="10" type="INT">
+            <parent column="id" foreignKey="FK_org_tarifario_hotel_vig_tarif_vigencia" implied="false" onDeleteCascade="false" table="org_tarifario_hotel_vig"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="FK_org_tarifario_hotel_vig_tarif_hotel_acomodacao" unique="false">
+            <column ascending="true" name="hotel_acomodacao"/>
+         </index>
+         <index name="FK_org_tarifario_hotel_vig_tarif_vigencia" unique="false">
+            <column ascending="true" name="vigencia"/>
+         </index>
+      </table>
+      <table name="org_transfers" numRows="75" remarks="" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="transfer" nullable="true" remarks="" size="60" type="VARCHAR"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_transfers_vig" numRows="80" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="transfer" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="2" name="dt_inicio_vigencia" nullable="false" remarks="" size="10" type="DATE"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="org_transfers_vig_tarif" numRows="151" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="2" id="1" name="vlr_custo_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="2" name="vlr_custo_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="3" name="vlr_custo_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="4" name="vlr_custo_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="5" name="vlr_venda_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="6" name="vlr_venda_hora_excedente_bi" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="7" name="vlr_venda_hora_excedente_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="8" name="vlr_venda_mono" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="9" name="grupo_veiculo" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_transfers_vig_tarif_2" implied="false" onDeleteCascade="false" table="org_grupo_veiculo"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="10" name="vigencia" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_transfers_vig_tarif_2_idx" unique="false">
+            <column ascending="true" name="grupo_veiculo"/>
+         </index>
+      </table>
+      <table name="org_transfers_vig_tarif_adicionais" numRows="8" remarks="" type="TABLE">
+         <column autoUpdated="true" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <column autoUpdated="false" digits="0" id="1" name="tolerancia" nullable="true" remarks="" size="8" type="TIME"/>
+         <column autoUpdated="false" digits="2" id="2" name="vlr_custo_saida" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="2" id="3" name="vlr_venda_saida" nullable="true" remarks="" size="10" type="DECIMAL"/>
+         <column autoUpdated="false" digits="0" id="4" name="adicional" nullable="false" remarks="" size="10" type="INT UNSIGNED">
+            <parent column="id" foreignKey="fk_org_transfers_vig_tarif_adicionais_2" implied="false" onDeleteCascade="false" table="org_adicionais"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="5" name="transfer_tarif" nullable="false" remarks="" size="10" type="INT UNSIGNED"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_org_transfers_vig_tarif_adicionais_2_idx" unique="false">
+            <column ascending="true" name="adicional"/>
+         </index>
+      </table>
+   </tables>
+</database>

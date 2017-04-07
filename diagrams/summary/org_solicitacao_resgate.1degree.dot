@@ -1,0 +1,36 @@
+// dot 2.38.0 on Windows 10 10.0
+// SchemaSpy rev 590
+digraph "org_solicitacao_resgate" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "org_solicitacao_resgate" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">org_solicitacao_resgate</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="data_hora" COLSPAN="3" ALIGN="LEFT">data_hora</TD></TR>
+      <TR><TD PORT="mensagem" COLSPAN="3" ALIGN="LEFT">mensagem</TD></TR>
+      <TR><TD PORT="situacao" COLSPAN="3" ALIGN="LEFT">situacao</TD></TR>
+      <TR><TD PORT="valor" COLSPAN="3" ALIGN="LEFT">valor</TD></TR>
+      <TR><TD PORT="conta" COLSPAN="3" ALIGN="LEFT">conta</TD></TR>
+      <TR><TD PORT="operador" COLSPAN="3" ALIGN="LEFT">operador</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/org_solicitacao_resgate.html"
+    tooltip="org_solicitacao_resgate"
+  ];
+}

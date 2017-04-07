@@ -1,0 +1,40 @@
+// dot 2.38.0 on Windows 10 10.0
+// SchemaSpy rev 590
+digraph "org_email" {
+  graph [
+    rankdir="RL"
+    bgcolor="#f7f7f7"
+    nodesep="0.18"
+    ranksep="0.46"
+    fontname="Helvetica"
+    fontsize="11"
+  ];
+  node [
+    fontname="Helvetica"
+    fontsize="11"
+    shape="plaintext"
+  ];
+  edge [
+    arrowsize="0.8"
+  ];
+  "org_email" [
+    label=<
+    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
+      <TR><TD COLSPAN="3" BGCOLOR="#9bab96" ALIGN="CENTER">org_email</TD></TR>
+      <TR><TD PORT="id" COLSPAN="3" BGCOLOR="#bed1b8" ALIGN="LEFT">id</TD></TR>
+      <TR><TD PORT="anexo" COLSPAN="3" ALIGN="LEFT">anexo</TD></TR>
+      <TR><TD PORT="cc" COLSPAN="3" ALIGN="LEFT">cc</TD></TR>
+      <TR><TD PORT="cco" COLSPAN="3" ALIGN="LEFT">cco</TD></TR>
+      <TR><TD PORT="corpo" COLSPAN="3" ALIGN="LEFT">corpo</TD></TR>
+      <TR><TD PORT="email_contato" COLSPAN="3" ALIGN="LEFT">email_contato</TD></TR>
+      <TR><TD PORT="idioma_cabecalho" COLSPAN="3" ALIGN="LEFT">idioma_cabecalho</TD></TR>
+      <TR><TD PORT="modelo" COLSPAN="3" ALIGN="LEFT">modelo</TD></TR>
+      <TR><TD PORT="titulo" COLSPAN="3" ALIGN="LEFT">titulo</TD></TR>
+      <TR><TD PORT="organizador" COLSPAN="3" ALIGN="LEFT">organizador</TD></TR>
+      <TR><TD PORT="evento" COLSPAN="3" ALIGN="LEFT">evento</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#f7f7f7">  </TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">9 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#f7f7f7">  </TD></TR>
+    </TABLE>>
+    URL="tables/org_email.html"
+    tooltip="org_email"
+  ];
+}
